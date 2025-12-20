@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta http-equiv="CONTENT-TYPE" content="text/html; charset=UTF-8">
+  <title>Form</title>
+</head>
+<body>
+  <h1>
+    Hello, World!
+  </h1>
+  <form action="post">
+    <p>
+      <label id="name">Name :</label>
+      <input placeholder="Enter your name here" autofocus required>
+    </p>
+    <p>
+      <label>Password :</label>
+      <input type="password" placeholder="password" required="">
+    </p>
+    
+    <div>
+      <label>Gender :</label>
+      <input type="radio" name="gender" id="Male" value="Male">
+      <label for="Male">Male</label>
+      <input type="radio" name="gender" id="Female" value="Female">
+      <label for="Female">Female</label>
+      <input type="radio" name="gender" id="Other" value="Other">
+      <label for="Other">Other</label>
+    </div>
+ 
+    <div>
+      <label id="city">City :</label>
+      <select name="city">
+        <option value="Null" selected="default">Select City</option>
+        <option value="delhi">Delhi</option>
+        <option value="mumbai">Mumbai</option>
+        <option value="hydhrabad">Hydhrabad</option>        
+      </select>
+    </div>
+    
+    <div>
+      <label for="comment">Comment :</label>
+      <input type="textbox" id="comment" placeholder="Your comment here">
+    </div>
+    
+    <input type="checkbox" id="check" value="check" required>
+    <label for="check">Accept terms and conditions</label>
+    
+    <p><button value="submit">Submit</button></p>
+  </form>
+</body>
+</html>

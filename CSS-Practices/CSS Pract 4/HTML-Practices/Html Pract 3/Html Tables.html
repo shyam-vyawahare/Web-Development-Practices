@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML Table Demo</title>
+  <style>
+    table {
+      width: 60%;
+      border-collapse: collapse;
+      margin: 20px auto;
+      font-family: Arial, sans-serif;
+    }
+    caption {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    th, td {
+      border: 1px solid #555;
+      padding: 10px;
+      text-align: center;
+    }
+    thead {
+      background-color: #f4f4f4;
+    }
+    tfoot {
+      background-color: #ddd;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <caption>Employee Salary Data</caption>
+
+    <colgroup>
+      <col span="1" style="background-color:#f9f9f9;">
+      <col span="2">
+    </colgroup>
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Salary ($)</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Dhruv</td>
+        <td>Frontend Developer</td>
+        <td>60,000</td>
+      </tr>
+      <tr>
+        <td>Ananya</td>
+        <td>Backend Developer</td>
+        <td>65,000</td>
+      </tr>
+    </tbody>
+
+    <tfoot>
+      <tr>
+        <td colspan="2">Total Employees</td>
+        <td>2</td>
+      </tr>
+    </tfoot>
+  </table>
+
+</body>
+</html>
