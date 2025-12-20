@@ -1,0 +1,277 @@
+* {
+    margin: 0%;
+    padding: 0%;
+}
+
+body {
+    background: #000000;
+    color: #ffffff;
+    margin-top: 3em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    margin: 10px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h3 {
+    text-align: center;
+    margin-top: 2em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: normal;
+    color: #bbbbbb;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-title {
+    margin-bottom: 1em;
+    background-image: linear-gradient(to right, blue, white, blue);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.card-title:hover::before,
+div>h2:hover::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+
+/* Normal Card structure */
+
+.card,
+.card2,
+.card3,
+.card4,
+.card5,
+.card6 {
+    margin: 0 auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    margin-left: 3em;
+    margin-right: 3em;
+    padding: 2em;
+    width: 300px;
+    background: #1c1f2b;
+    text-align: center;
+    border-radius: 10px;
+    position: relative;
+    /* Added position relative to contain the pseudo-element */
+}
+
+
+/*------------------------------ 
+Card 1 Styles - Moving Glow Card 
+--------------------------------*/
+
+
+/* CSS Variable for angle */
+
+@property --angle {
+    syntax: "<angle>";
+    /* Defines the type of value */
+    initial-value: 0deg;
+    inherits: false;
+    /* Prevents inheritance to child elements */
+}
+
+
+/* Pseudo-element for gradient border effect */
+
+.card::after,
+.card::before {
+    /* Instead of using fixed angles, we use a CSS variable  that is 
+    --angle: 0deg; updated in the animation to create a rotating effect
+    */
+    content: '';
+    /* Necessary for pseudo-elements */
+    position: absolute;
+    /* Positioning the pseudo-element absolutely */
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(from var(--angle), transparent 70%, rgb(146, 40, 233), purple, rgb(218, 14, 48), red, white);
+    /* Creating a conic gradient background */
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    /* Centering the pseudo-element */
+    z-index: -1;
+    /* Place behind the card */
+    padding: 3px;
+    border-radius: 10px;
+    animation: 3s spin linear infinite;
+    /* Animation for rotation */
+}
+
+.card::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+
+/* Animation for rotating the gradient */
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+
+
+/*--------------------------- 
+Card 2 Styles - Glowing card 
+-----------------------------*/
+
+.card2::after,
+.card2::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: conic-gradient(purple, red, purple);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.card2::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+
+/*----------------------------------- 
+Card 3 Styles - Glowing on Hover card 
+-------------------------------------*/
+
+.card3::after,
+.card3::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(45deg, orange, red, orange);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+}
+
+.card3:hover::before {
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+
+/*-------------------------------------------
+Card 4 Styles - Subtle Glowing on Hover card
+---------------------------------------------*/
+
+.card4:hover::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(45deg, cyan, white, cyan, white, cyan);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+    filter: blur(1.5rem);
+    opacity: 0.5;
+}
+
+
+/*----------------------------------
+Card 5 Styles - Pulsating Glow card
+------------------------------------*/
+
+.card5 {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    50% {
+        box-shadow: 0 0 20px 5px rgba(0, 255, 255, 1);
+    }
+}
+
+
+/*------------------------------
+Card 6 Styles - Inset Glow card 
+--------------------------------*/
+
+.card6::after {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(45deg, magenta, violet, white, magenta);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+    box-shadow: inset 0 0 15px 5px rgba(255, 0, 255, 0.8);
+}
+
+.card6::before {
+    content: '';
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(45deg, magenta, violet, white, magenta);
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    z-index: -1;
+    padding: 3px;
+    border-radius: 10px;
+    filter: blur(1.5rem);
+    opacity: 0.5;
+    animation: pulseInsetGlow 2s infinite;
+}
+
+@keyframes pulseInsetGlow {
+    50% {
+        box-shadow: inset 0 0 0px 50px rgba(255, 0, 255, 1);
+    }
+}
+
+footer {
+    text-align: center;
+    margin-top: 2em;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color: #888888;
+}
+
+
+/* Responsive Design for smaller screens */
+
+@media (max-width: 768px) {
+    body {
+        margin-top: 5em;
+    }
+    .container {
+        flex-direction: column;
+    }
+}
