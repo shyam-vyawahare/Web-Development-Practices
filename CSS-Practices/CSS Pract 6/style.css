@@ -1,0 +1,116 @@
+/* Root vars & colors */
+
+:root {
+    --main-bg: #f8fafc;
+    --accent: #047857;
+    --text-primary: #111827;
+    --card-light: #ffffff;
+    --spacing: 1.5rem;
+    --radius: 0.5rem;
+    --transition: 0.3s ease;
+}
+
+
+/* Global reset + defaults */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--main-bg);
+    color: var(--text-primary);
+    padding: var(--spacing);
+}
+
+
+/* Hero */
+
+.hero {
+    text-align: center;
+    background: var(--accent);
+    color: white;
+    padding: 2rem;
+    border-radius: var(--radius);
+    margin-bottom: var(--spacing);
+}
+
+
+/* Layout */
+
+.container {
+    display: grid;
+    gap: var(--spacing);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+
+/* Card inside container */
+
+.card {
+    background: var(--card-light);
+    padding: var(--spacing);
+    border-radius: var(--radius);
+    border: 2px solid var(--accent);
+    transition: border-color var(--transition);
+}
+
+
+/* New selector: :is() */
+
+.card:is(:hover, :focus-within) {
+    border-color: #065f46;
+}
+
+
+/* Container Query */
+
+@container (min-width: 350px) {
+    .card {
+        padding: calc(var(--spacing) * 1.5);
+        font-size: 1.1rem;
+    }
+}
+
+
+/* Buttons */
+
+.btn {
+    margin-top: 1rem;
+    background: var(--accent);
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: transform var(--transition);
+}
+
+
+/* Scroll-linked animations (prefers reduced motion safe) */
+
+@scroll-timeline scrollGrow {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.btn {
+    animation: scrollGrow 3s linear infinite;
+}
+
+
+/* Footer */
+
+footer {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #555;
+}
