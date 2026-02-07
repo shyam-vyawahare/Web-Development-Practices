@@ -1,0 +1,153 @@
+/* Flexbox Fundamentals */
+
+.flex-container {
+    display: flex;
+    justify-content: space-around;
+    /* Evenly spaces out items */
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.flex-item {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    flex: 1;
+    /* Makes all items take equal space */
+    margin: 10px;
+}
+
+
+/* Responsive Layout Techniques */
+
+.flex-container2 {
+    display: flex;
+    flex-wrap: wrap;
+    /* Allows items to wrap to the next line */
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.flex-item2 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    flex: 1 1 300px;
+    /* Flex-grow, flex-shrink, flex-basis */
+    margin: 10px;
+    box-sizing: border-box;
+}
+
+
+/* Responsive Navigation Bar */
+
+.nav-container {
+    display: flex;
+    background-color: #333;
+    padding: 10px;
+}
+
+.nav-item {
+    color: white;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;
+    flex: 1;
+    /* Makes each nav item take equal space */
+}
+
+.nav-item:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+
+/* Grid Layouts with Flexbox */
+
+.grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    /* Wrap items to next line */
+    padding: 20px;
+}
+
+.grid-item {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 calc(33.333% - 20px);
+    /* 3 items per row with spacing */
+    box-sizing: border-box;
+}
+
+
+/* Media Queries with Flexbox */
+
+.flex-container3 {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.flex-item3 {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    margin: 10px;
+    flex: 1 1 300px;
+    /* Default layout */
+    box-sizing: border-box;
+}
+
+
+/* Media Query for smaller screens */
+
+@media (max-width: 600px) {
+    .flex-item {
+        flex: 1 1 100%;
+        /* Stacks items on top of each other */
+    }
+}
+
+
+/* Complex Layout with Flexbox */
+
+.complex-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.sidebar {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    flex: 1 1 200px;
+    /* Sidebar width */
+}
+
+.content {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    flex: 2 1 400px;
+    /* Content area width */
+}
+
+
+/* Responsive Images and Media */
+
+.image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
