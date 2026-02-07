@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Flexbox</title>
+    <style>
+        .flex-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            background-color: #32a852;
+        }
+        
+        .flex-container div {
+            background-color: #c9d1cb;
+            margin: 10px;
+            padding: 20px;
+            flex: 1 1 200px;
+        }
+        
+        @media (max-width: 600px) {
+            .flex-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Responsive Flexbox</h2>
+    <div class="flex-container">
+        <div>Item1</div>
+        <div>Item2</div>
+        <div>Item3</div>
+    </div>
+</body>
+
+</html>
