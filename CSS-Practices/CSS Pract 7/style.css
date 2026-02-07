@@ -1,0 +1,39 @@
+.div {
+    margin: 20px;
+    font-size: 18px;
+}
+
+.simple-border {
+    border: 2px solid black;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.dashed-border {
+    border: 2px dashed red;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.remthink-border {
+    border: 1rem solid brown;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.doublethick-border {
+    border: 4px double blue;
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+}
+
+.ridge-border {
+    border: 4mm ridge rgba(135, 206, 235, 0.6);
+    padding: 20px;
+    text-align: center;
+    margin: 10px;
+}
