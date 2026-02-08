@@ -1,0 +1,13 @@
+.fixed {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background-color: lightgreen;
+    padding: 20px;
+    border: 2px solid black;
+}
+
+.content {
+    height: 1200px;
+    padding: 10px;
+}
