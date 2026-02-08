@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-index Example</title>
+    <style>
+        .box {
+            box-sizing: border-box;
+            font-family: Arial;
+            color: #eee;
+            width: 125px;
+            height: 125px;
+            text-align: center;
+        }
+        
+        .blue,
+        .green,
+        .orange,
+        .purple {
+            position: absolute;
+        }
+        
+        .red {
+            background: red;
+            z-index: 100;
+        }
+        
+        .green {
+            background: green;
+            top: 120px;
+            left: 50px;
+            z-index: 1;
+        }
+        
+        .orange {
+            width: 85px;
+            height: 85px;
+            left: 20px;
+            background-color: orange;
+            font-family: Arial;
+            z-index: 3;
+        }
+        
+        .purple {
+            background-color: purple;
+            top: 100px;
+            left: 30px;
+            z-index: 0;
+        }
+        
+        .blue {
+            background: blue;
+            top: 160px;
+            left: 100px;
+            z-index: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Z-index Example</h1>
+    <div class="box green">Positioned
+        <div class="orange">Positioned</div>
+    </div>
+    <div class="box purple">Positioned</div>
+    <div class="box blue">Positioned</div>
+    <div class="box red">Non-positioned</div>
+</body>
+
+</html>
