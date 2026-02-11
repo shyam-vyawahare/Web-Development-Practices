@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Using Pixels (px) vs. Percentages (%)</title>
+    <style>
+        .box {
+            background: red;
+            border: 1px solid black;
+            margin: 10px;
+        }
+        
+        .parent {
+            background: white;
+            border: 1px solid black;
+        }
+        
+        .fifty-percent {
+            width: 50%;
+        }
+        
+        .one-hundred {
+            width: 100px;
+        }
+        
+        .parent {
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>Output-1 </h3>
+    <div class="box fifty-percent">50%</div>
+    <div class="box one-hundred">100px</div>
+    <hr>
+    <h3>Output-2 </h3>
+    <div class="parent">
+        <div class="box fifty-percent">50%</div>
+        <div class="box one-hundred">100px</div>
+    </div>
+</body>
+
+</html>
