@@ -86,7 +86,7 @@ Examples include:
 🚀 Full-Stack Development Path
 
 As the repository grows, the learning path will gradually expand beyond frontend fundamentals.
-
+```
 Frontend
 
 HTML
@@ -120,7 +120,7 @@ Mongoose
 Database Integration
   ↓
 Full-Stack Applications
-
+```
 The goal is to build a practical understanding of how these technologies work together rather than learning frameworks in isolation.
 
 ---
