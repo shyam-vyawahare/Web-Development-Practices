@@ -222,7 +222,7 @@ Phase 6 — Full Stack
 📂 Repository Structure
 
 The structure will evolve with the learning roadmap. A typical organization may look like:
-
+```
 HTML/
 ├── fundamentals/
 ├── forms/
@@ -264,7 +264,7 @@ MongoDB/
 
 Full-Stack/
 └── projects/
-
+```
 «The actual folder structure may differ as the repository evolves.»
 
 ---
