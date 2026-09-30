@@ -6,6 +6,8 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
+## Last Updated on 30th of September 2026
+
 ---
 
 📚 What You'll Find Here
