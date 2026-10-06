@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOM Basics</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .card {
+            max-width: 400px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+
+        <h1 id="title">DOM Practice</h1>
+
+        <p id="message">
+            This text will be changed using JavaScript.
+        </p>
+
+        <input
+            id="nameInput"
+            type="text"
+            placeholder="Enter your name"
+        >
+
+        <br>
+
+        <button id="changeButton">
+            Change Content
+        </button>
+
+    </div>
+
+
+    <script>
+
+        // ==========================================
+        // 1. SELECT ELEMENT BY ID
+        // ==========================================
+
+        let title = document.getElementById("title");
+
+        console.log("Title element:");
+        console.log(title);
+
+
+        // ==========================================
+        // 2. SELECT USING querySelector()
+        // ==========================================
+
+        let message = document.querySelector("#message");
+
+        console.log("\nMessage element:");
+        console.log(message);
+
+
+        // ==========================================
+        // 3. CHANGE TEXT
+        // ==========================================
+
+        title.textContent = "JavaScript DOM";
+
+
+        // ==========================================
+        // 4. CHANGE HTML
+        // ==========================================
+
+        message.innerHTML =
+            "JavaScript can <strong>change HTML</strong> dynamically.";
+
+
+        // ==========================================
+        // 5. GET INPUT VALUE
+        // ==========================================
+
+        let input = document.querySelector("#nameInput");
+
+        console.log("\nCurrent input value:");
+        console.log(input.value);
+
+
+        // ==========================================
+        // 6. ADD EVENT LISTENER
+        // ==========================================
+
+        let button = document.querySelector("#changeButton");
+
+        button.addEventListener("click", function () {
+
+            let name = input.value;
+
+            if (name === "") {
+                message.textContent = "Please enter your name.";
+                return;
+            }
+
+            message.textContent =
+                `Hello ${name}! Welcome to JavaScript DOM.`;
+
+        });
+
+
+        // ==========================================
+        // 7. CHANGE CSS USING JAVASCRIPT
+        // ==========================================
+
+        title.style.color = "blue";
+
+
+        // ==========================================
+        // 8. ADD / REMOVE CLASS
+        // ==========================================
+
+        message.classList.add("active");
+
+        console.log("\nMessage classes:");
+        console.log(message.classList);
+
+    </script>
+
+</body>
+
+</html>
