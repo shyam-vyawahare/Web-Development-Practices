@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOM Events Practice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        .box {
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #333;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 10px;
+            width: 90%;
+            margin-top: 10px;
+        }
+
+        #output {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 id="title">DOM Events</h1>
+
+        <!-- Click Event -->
+        <div class="box">
+
+            <h2>1. Click Event</h2>
+
+            <button id="clickButton">
+                Click Me
+            </button>
+
+            <p id="clickOutput">
+                Button has not been clicked.
+            </p>
+
+        </div>
+
+
+        <!-- Input Event -->
+        <div class="box">
+
+            <h2>2. Input Event</h2>
+
+            <input
+                id="nameInput"
+                type="text"
+                placeholder="Type your name"
+            >
+
+            <p id="nameOutput"></p>
+
+        </div>
+
+
+        <!-- Mouse Events -->
+        <div class="box">
+
+            <h2>3. Mouse Events</h2>
+
+            <button id="mouseButton">
+                Move Mouse Here
+            </button>
+
+            <p id="mouseOutput">
+                Waiting for mouse...
+            </p>
+
+        </div>
+
+
+        <!-- Keyboard Event -->
+        <div class="box">
+
+            <h2>4. Keyboard Event</h2>
+
+            <input
+                id="keyboardInput"
+                type="text"
+                placeholder="Press a key"
+            >
+
+            <p id="keyOutput"></p>
+
+        </div>
+
+
+        <!-- Form Event -->
+        <div class="box">
+
+            <h2>5. Form Submit</h2>
+
+            <form id="userForm">
+
+                <input
+                    id="emailInput"
+                    type="email"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <button type="submit">
+                    Submit
+                </button>
+
+            </form>
+
+            <p id="formOutput"></p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // ==========================================
+        // 1. CLICK EVENT
+        // ==========================================
+
+        let clickButton =
+            document.querySelector("#clickButton");
+
+        let clickOutput =
+            document.querySelector("#clickOutput");
+
+        let clickCount = 0;
+
+        clickButton.addEventListener("click", function () {
+
+            clickCount++;
+
+            clickOutput.textContent =
+                `Button clicked ${clickCount} time(s).`;
+
+        });
+
+
+        // ==========================================
+        // 2. INPUT EVENT
+        // ==========================================
+
+        let nameInput =
+            document.querySelector("#nameInput");
+
+        let nameOutput =
+            document.querySelector("#nameOutput");
+
+        nameInput.addEventListener("input", function () {
+
+            nameOutput.textContent =
+                `Hello, ${nameInput.value}`;
+
+        });
+
+
+        // ==========================================
+        // 3. MOUSE EVENTS
+        // ==========================================
+
+        let mouseButton =
+            document.querySelector("#mouseButton");
+
+        let mouseOutput =
+            document.querySelector("#mouseOutput");
+
+
+        mouseButton.addEventListener("mouseenter", function () {
+
+            mouseOutput.textContent =
+                "Mouse entered the button.";
+
+        });
+
+
+        mouseButton.addEventListener("mouseleave", function () {
+
+            mouseOutput.textContent =
+                "Mouse left the button.";
+
+        });
+
+
+        // ==========================================
+        // 4. KEYBOARD EVENT
+        // ==========================================
+
+        let keyboardInput =
+            document.querySelector("#keyboardInput");
+
+        let keyOutput =
+            document.querySelector("#keyOutput");
+
+        keyboardInput.addEventListener("keydown", function (event) {
+
+            keyOutput.textContent =
+                `You pressed: ${event.key}`;
+
+        });
+
+
+        // ==========================================
+        // 5. FORM SUBMIT
+        // ==========================================
+
+        let userForm =
+            document.querySelector("#userForm");
+
+        let emailInput =
+            document.querySelector("#emailInput");
+
+        let formOutput =
+            document.querySelector("#formOutput");
+
+
+        userForm.addEventListener("submit", function (event) {
+
+            // Prevent page refresh
+            event.preventDefault();
+
+            formOutput.textContent =
+                `Form submitted with: ${emailInput.value}`;
+
+        });
+
+    </script>
+
+</body>
+
+</html>
