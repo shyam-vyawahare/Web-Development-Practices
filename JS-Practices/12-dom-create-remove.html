@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DOM Create & Remove</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            flex: 1;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            background: #f2f2f2;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .delete-btn {
+            padding: 5px 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Dynamic Task List</h1>
+
+        <div class="input-area">
+
+            <input
+                id="taskInput"
+                type="text"
+                placeholder="Enter a task"
+            >
+
+            <button id="addButton">
+                Add
+            </button>
+
+        </div>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+
+    <script>
+
+        // ==========================================
+        // 1. SELECT ELEMENTS
+        // ==========================================
+
+        const taskInput =
+            document.querySelector("#taskInput");
+
+        const addButton =
+            document.querySelector("#addButton");
+
+        const taskList =
+            document.querySelector("#taskList");
+
+
+        // ==========================================
+        // 2. ADD TASK
+        // ==========================================
+
+        addButton.addEventListener("click", function () {
+
+            const taskText = taskInput.value.trim();
+
+            // Don't add empty tasks
+            if (taskText === "") {
+                alert("Please enter a task.");
+                return;
+            }
+
+
+            // ==========================================
+            // 3. CREATE NEW ELEMENT
+            // ==========================================
+
+            const listItem = document.createElement("li");
+
+            const task = document.createElement("span");
+
+            const deleteButton =
+                document.createElement("button");
+
+
+            // ==========================================
+            // 4. ADD CONTENT
+            // ==========================================
+
+            task.textContent = taskText;
+
+            deleteButton.textContent = "Delete";
+
+
+            // ==========================================
+            // 5. ADD CLASS
+            // ==========================================
+
+            deleteButton.classList.add("delete-btn");
+
+
+            // ==========================================
+            // 6. ADD DELETE EVENT
+            // ==========================================
+
+            deleteButton.addEventListener(
+                "click",
+                function () {
+
+                    listItem.remove();
+
+                }
+            );
+
+
+            // ==========================================
+            // 7. APPEND ELEMENTS
+            // ==========================================
+
+            listItem.append(task);
+            listItem.append(deleteButton);
+
+            taskList.append(listItem);
+
+
+            // ==========================================
+            // 8. CLEAR INPUT
+            // ==========================================
+
+            taskInput.value = "";
+
+            taskInput.focus();
+
+        });
+
+    </script>
+
+</body>
+
+</html>
