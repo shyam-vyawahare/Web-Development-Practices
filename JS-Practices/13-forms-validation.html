@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms & Validation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        form {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+
+        .field {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .success {
+            color: green;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Registration Form</h1>
+
+        <form id="registrationForm">
+
+            <!-- Name -->
+            <div class="field">
+                <label for="name">Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                >
+
+                <p id="nameError" class="error"></p>
+            </div>
+
+            <!-- Email -->
+            <div class="field">
+                <label for="email">Email</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter your email"
+                >
+
+                <p id="emailError" class="error"></p>
+            </div>
+
+            <!-- Password -->
+            <div class="field">
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Enter your password"
+                >
+
+                <p id="passwordError" class="error"></p>
+            </div>
+
+            <button type="submit">
+                Register
+            </button>
+
+            <p id="successMessage" class="success"></p>
+
+        </form>
+
+    </div>
+
+    <script>
+
+        // ==========================================
+        // 1. SELECT ELEMENTS
+        // ==========================================
+
+        const form =
+            document.querySelector("#registrationForm");
+
+        const nameInput =
+            document.querySelector("#name");
+
+        const emailInput =
+            document.querySelector("#email");
+
+        const passwordInput =
+            document.querySelector("#password");
+
+        const nameError =
+            document.querySelector("#nameError");
+
+        const emailError =
+            document.querySelector("#emailError");
+
+        const passwordError =
+            document.querySelector("#passwordError");
+
+        const successMessage =
+            document.querySelector("#successMessage");
+
+
+        // ==========================================
+        // 2. FORM SUBMIT
+        // ==========================================
+
+        form.addEventListener("submit", function (event) {
+
+            // Prevent page refresh
+            event.preventDefault();
+
+            // Clear previous messages
+            nameError.textContent = "";
+            emailError.textContent = "";
+            passwordError.textContent = "";
+            successMessage.textContent = "";
+
+
+            // Get input values
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+
+
+            let isValid = true;
+
+
+            // ==========================================
+            // 3. NAME VALIDATION
+            // ==========================================
+
+            if (name === "") {
+
+                nameError.textContent =
+                    "Name is required.";
+
+                isValid = false;
+
+            } else if (name.length < 3) {
+
+                nameError.textContent =
+                    "Name must contain at least 3 characters.";
+
+                isValid = false;
+            }
+
+
+            // ==========================================
+            // 4. EMAIL VALIDATION
+            // ==========================================
+
+            if (email === "") {
+
+                emailError.textContent =
+                    "Email is required.";
+
+                isValid = false;
+
+            } else if (!email.includes("@")) {
+
+                emailError.textContent =
+                    "Enter a valid email.";
+
+                isValid = false;
+            }
+
+
+            // ==========================================
+            // 5. PASSWORD VALIDATION
+            // ==========================================
+
+            if (password === "") {
+
+                passwordError.textContent =
+                    "Password is required.";
+
+                isValid = false;
+
+            } else if (password.length < 8) {
+
+                passwordError.textContent =
+                    "Password must contain at least 8 characters.";
+
+                isValid = false;
+            }
+
+
+            // ==========================================
+            // 6. FINAL RESULT
+            // ==========================================
+
+            if (isValid) {
+
+                successMessage.textContent =
+                    "Registration successful!";
+
+                // Clear form
+                form.reset();
+            }
+
+        });
+
+    </script>
+
+</body>
+</html>
