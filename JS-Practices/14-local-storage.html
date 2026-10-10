@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Practice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        input {
+            width: 95%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Notes</h1>
+
+    <input id="noteInput" type="text"
+           placeholder="Write a note">
+
+    <button id="saveButton">Save Note</button>
+    <button id="clearButton">Clear All</button>
+
+    <p id="message"></p>
+    <ul id="notesList"></ul>
+
+    <script>
+        const noteInput = document.querySelector("#noteInput");
+        const saveButton = document.querySelector("#saveButton");
+        const clearButton = document.querySelector("#clearButton");
+        const notesList = document.querySelector("#notesList");
+        const message = document.querySelector("#message");
+
+        // Retrieve saved notes or start with an empty array.
+        let notes = JSON.parse(
+            localStorage.getItem("notes")
+        ) || [];
+
+        // Display notes on the page.
+        function displayNotes() {
+            notesList.replaceChildren();
+
+            notes.forEach(function (note, index) {
+                const li = document.createElement("li");
+                const text = document.createElement("span");
+                const deleteButton = document.createElement("button");
+
+                text.textContent = note;
+                deleteButton.textContent = "Delete";
+
+                deleteButton.addEventListener("click", function () {
+                    notes.splice(index, 1);
+                    saveNotes();
+                    displayNotes();
+                });
+
+                li.append(text, deleteButton);
+                notesList.append(li);
+            });
+        }
+
+        // Save the array in browser storage.
+        function saveNotes() {
+            localStorage.setItem("notes", JSON.stringify(notes));
+        }
+
+        // Add a new note.
+        saveButton.addEventListener("click", function () {
+            const note = noteInput.value.trim();
+
+            if (note === "") {
+                message.textContent = "Please enter a note.";
+                return;
+            }
+
+            notes.push(note);
+            saveNotes();
+            displayNotes();
+
+            noteInput.value = "";
+            message.textContent = "Note saved!";
+        });
+
+        // Remove all saved notes.
+        clearButton.addEventListener("click", function () {
+            notes = [];
+            saveNotes();
+            displayNotes();
+            message.textContent = "All notes cleared.";
+        });
+
+        // Load saved notes when the page opens.
+        displayNotes();
+    </script>
+</body>
+</html>
