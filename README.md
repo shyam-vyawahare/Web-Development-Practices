@@ -2,11 +2,11 @@
 
 A hands-on repository documenting my journey of learning, practicing, and strengthening Web Development fundamentals through code.
 
-This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web development, with an emphasis on writing practical code rather than only studying theory.
+This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web development, with an emphasis on practical implementation, problem-solving, and consistent improvement.
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
-## Last Updated on 11th of October 2026
+Last Updated: October 11, 2026
 
 ---
 
@@ -16,18 +16,15 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 Practice focused on building a strong foundation with semantic and accessible markup.
 
-- Semantic HTML elements
-- Document structure
+- Semantic HTML elements and document structure
 - Headings, paragraphs, links, and media
 - Forms and input elements
 - Tables and table structure
-- "<thead>", "<tbody>", "<tfoot>"
+- "<thead>", "<tbody>", and "<tfoot>"
 - "<col>" and "<colgroup>"
 - Accessibility-oriented markup
 - HTML attributes and best practices
 - Basic page layouts
-
----
 
 🎨 CSS
 
@@ -36,10 +33,8 @@ Practical CSS experiments focused on creating responsive and polished interfaces
 - Selectors and specificity
 - Box model
 - Colors, typography, and backgrounds
-- Flexbox
-- CSS Grid
-- Responsive design
-- Media queries
+- Flexbox and CSS Grid
+- Responsive design and media queries
 - Positioning
 - Transitions and animations
 - Hover and interaction effects
@@ -47,55 +42,64 @@ Practical CSS experiments focused on creating responsive and polished interfaces
 - Buttons, cards, navbars, and other UI components
 - Layout and responsive UI experiments
 
----
-
 ⚡ JavaScript
 
-JavaScript practice ranging from core programming concepts to browser-based interactions.
+JavaScript practice progressing from core programming fundamentals to interactive browser applications.
 
-- Variables and data types
-- Operators and expressions
-- Conditional statements
-- Loops
-- Functions
-- Arrays and objects
-- String and number manipulation
-- Type conversion
-- Randomization with "Math.random()"
-- DOM manipulation
-- Event handling
-- Forms and user input
-- "localStorage"
-- Fetch API
-- Promises and "async/await"
-- Error handling
-- Logic-building problems
-- Small interactive components
-- Mini applications
+- Variables, data types, and operators
+- Conditional statements and loops
+- Functions, callbacks, and higher-order functions
+- Arrays, objects, and array methods
+- String manipulation and type conversion
+- Destructuring, spread, and rest operators
+- Scope, hoisting, and the Temporal Dead Zone
+- DOM selection and manipulation
+- Event handling and dynamic element creation
+- Forms and input validation
+- Browser storage with "localStorage"
+- Promises, "async/await", and error handling
+- Fetch API and asynchronous data handling
+- Logic-building problems and mini applications
 
-🧪 Current JavaScript Practice
+---
 
-Examples include:
+🧪 JavaScript Practice Files
 
-- Faulty Calculator
-- To-Do applications
-- Interactive UI components
-- API-based applications
-- Logic-building exercises
+The following files have been added as part of the structured JavaScript learning journey.
+
+File| Topic
+"02-faulty-calculator.js"| Operators, functions, randomization, and type conversion
+"03-arrays.js"| Array creation, access, updates, and loops
+"04-objects.js"| Object properties, nested objects, and methods
+"05-array-methods.js"| "map()", "filter()", "find()", "reduce()", and more
+"06-strings.js"| String methods, searching, and manipulation
+"07-destructuring-spread.js"| Destructuring, spread, and rest operators
+"08-functions.js"| Functions, arrow functions, callbacks, and return values
+"09-scope-hoisting.js"| Scope, hoisting, and the Temporal Dead Zone
+"10-dom-basics.html"| DOM selection and element modification
+"11-dom-events.html"| Click, input, mouse, keyboard, and form events
+"12-dom-create-remove.html"| Dynamic element creation, insertion, and removal
+"13-forms-validation.html"| Form handling and input validation
+"14-local-storage.html"| Saving, retrieving, and deleting browser data
+"15-promises-async-await.js"| Promises, asynchronous execution, and API requests
+
+«Note: This table documents the files created during the learning sessions. The numbered prefixes represent the sequence of practice files shared here; confirm the repository's actual directory contents before assuming every file has been committed.»
 
 ---
 
 🚀 Full-Stack Development Path
 
-As the repository grows, the learning path will gradually expand beyond frontend fundamentals.
-```
+The repository follows a focused progression toward becoming a full-stack web developer.
+
 Frontend
 
 HTML
   ↓
-CSS
+CSS & Responsive Design
   ↓
-JavaScript
+JavaScript Fundamentals
+  ↓
+DOM & Browser APIs
   ↓
 React
   ↓
@@ -109,6 +113,8 @@ Express.js
   ↓
 REST APIs
   ↓
+Middleware & Error Handling
+  ↓
 Authentication
   ↓
 Backend Development
@@ -117,157 +123,166 @@ Database
 
 MongoDB
   ↓
+CRUD Operations
+  ↓
 Mongoose
   ↓
 Database Integration
   ↓
 Full-Stack Applications
-```
-The goal is to build a practical understanding of how these technologies work together rather than learning frameworks in isolation.
+
+The goal is to understand how these technologies work together rather than learning frameworks in isolation.
 
 ---
 
 🛠️ Practice Philosophy
 
-This repository follows a learn → code → experiment → break → debug → improve approach.
+This repository follows a simple approach:
 
-Instead of keeping concepts purely theoretical, each topic is converted into executable code, experiments, or small projects wherever possible.
+Learn → Code → Experiment → Break → Debug → Improve
 
 The focus is on:
 
-- Understanding fundamentals
+- Understanding fundamentals instead of memorizing syntax
 - Writing code independently
-- Debugging errors
-- Experimenting with concepts
+- Debugging errors and understanding their causes
+- Experimenting with different implementations
 - Building reusable components
-- Connecting concepts together
-- Gradually moving toward production-style development
+- Connecting individual concepts into practical applications
+- Gradually adopting professional development practices
 
 ---
 
 🔄 Continuous Updates
 
-This repository is updated regularly as I continue developing my web development skills.
+This repository grows alongside my learning journey.
 
-New additions may include:
+Planned additions include:
 
-- Concept-based practice files
-- UI components
-- JavaScript exercises
+- More JavaScript fundamentals and problem-solving exercises
+- Interactive UI components
+- Form validation and browser storage experiments
+- API integration and asynchronous programming
 - Mini web applications
-- API integrations
-- React projects
-- Node.js backend exercises
-- MongoDB experiments
+- React components and projects
+- Node.js and Express.js backend exercises
+- MongoDB and database integration
 - Full-stack applications
-- Performance and optimization experiments
+- Performance, accessibility, SEO, and Core Web Vitals experiments
 
 ---
 
-🎯 Roadmap
+🎯 Learning Roadmap
 
 Phase 1 — Web Fundamentals
 
 - [x] HTML fundamentals
-- [ ] Advanced HTML
+- [ ] Advanced HTML and accessibility
 - [ ] CSS fundamentals
+- [ ] Flexbox and Grid
 - [ ] Responsive layouts
-- [ ] Modern CSS
+- [ ] Modern CSS techniques
 
 Phase 2 — JavaScript
 
-- [ ] JavaScript fundamentals
-- [ ] DOM manipulation
-- [ ] Events
-- [ ] Advanced JavaScript
-- [ ] Asynchronous JavaScript
-- [ ] APIs
-- [ ] Mini applications
+- [x] Core JavaScript practice
+- [x] Arrays, objects, strings, and functions
+- [x] DOM fundamentals and events
+- [x] Dynamic DOM manipulation
+- [x] Form validation
+- [x] Browser storage
+- [x] Promises and "async/await"
+- [ ] Complete API integration exercises
+- [ ] Build interactive mini applications
+- [ ] Consolidate concepts through independent projects
 
 Phase 3 — Frontend Development
 
 - [ ] React fundamentals
-- [ ] Components
+- [ ] Components and JSX
 - [ ] Props and state
-- [ ] Hooks
+- [ ] React Hooks
 - [ ] Routing
 - [ ] API integration
-- [ ] Production-ready UI
+- [ ] Responsive and accessible interfaces
+- [ ] Frontend deployment
 
 Phase 4 — Backend Development
 
-- [ ] Node.js
+- [ ] Node.js fundamentals
 - [ ] Express.js
-- [ ] REST APIs
-- [ ] Middleware
-- [ ] Authentication
-- [ ] Error handling
+- [ ] REST API development
+- [ ] Middleware and error handling
+- [ ] Request validation
+- [ ] Authentication and authorization
+- [ ] Backend deployment
 
 Phase 5 — Database
 
 - [ ] MongoDB fundamentals
 - [ ] CRUD operations
 - [ ] Mongoose
-- [ ] Database relationships
-- [ ] Backend + database integration
+- [ ] Data modeling
+- [ ] Database integration with Node.js
 
-Phase 6 — Full Stack
+Phase 6 — Full-Stack Development
 
-- [ ] Connect React + Node.js
-- [ ] Build complete applications
-- [ ] Authentication
-- [ ] Deployment
-- [ ] Performance optimization
+- [ ] Integrate React with Node.js and Express
+- [ ] Connect applications to MongoDB
+- [ ] Implement authentication
+- [ ] Build and deploy a complete application
+- [ ] Optimize performance and user experience
+- [ ] Document projects for recruiters and developers
 
 ---
 
 📂 Repository Structure
 
-The structure will evolve with the learning roadmap. A typical organization may look like:
+The structure below reflects the current JavaScript practice sequence and the planned expansion into other technologies.
 ```
-HTML/
-├── fundamentals/
-├── forms/
-├── tables/
-└── semantic-html/
-
-CSS/
-├── fundamentals/
-├── flexbox/
-├── grid/
-├── responsive-design/
-└── components/
-
-JavaScript/
-├── fundamentals/
-├── logic-practice/
-├── dom/
-├── events/
-├── async-js/
-├── api/
-└── mini-projects/
-
-React/
-├── fundamentals/
-├── components/
-├── hooks/
-└── projects/
-
-NodeJS/
-├── fundamentals/
-├── express/
-├── api/
-└── projects/
-
-MongoDB/
-├── fundamentals/
-├── crud/
-└── integration/
-
-Full-Stack/
-└── projects/
+Web Practices/
+│
+├── HTML/
+│
+├── CSS/
+│
+├── JS-Practices/
+│   ├── 02-faulty-calculator.js
+│   ├── 03-arrays.js
+│   ├── 04-objects.js
+│   ├── 05-array-methods.js
+│   ├── 06-strings.js
+│   ├── 07-destructuring-spread.js
+│   ├── 08-functions.js
+│   ├── 09-scope-hoisting.js
+│   ├── 10-dom-basics.html
+│   ├── 11-dom-events.html
+│   ├── 12-dom-create-remove.html
+│   ├── 13-forms-validation.html
+│   ├── 14-local-storage.html
+│   └── 15-promises-async-await.js
+│
+├── React/
+│   ├── fundamentals/
+│   ├── components/
+│   ├── hooks/
+│   └── projects/
+│
+├── NodeJS/
+│   ├── fundamentals/
+│   ├── express/
+│   ├── api/
+│   └── projects/
+│
+├── MongoDB/
+│   ├── fundamentals/
+│   ├── crud/
+│   └── integration/
+│
+└── Full-Stack/
+    └── projects/
 ```
-«The actual folder structure may differ as the repository evolves.»
+«The HTML and CSS folders and the future React, Node.js, MongoDB, and Full-Stack folders are organizational placeholders. The actual directory structure may differ as the repository evolves.»
 
 ---
 
@@ -292,6 +307,6 @@ If you want to discuss web development, programming, projects, or learning resou
 
 ⭐ About This Repository
 
-This repository is part of my ongoing journey toward becoming a full-stack web developer.
+This repository is part of my ongoing journey toward becoming a full-stack web developer, strengthening my fundamentals, and preparing for real-world development opportunities.
 
 «Learn the fundamentals. Build consistently. Debug everything. Keep improving.»
