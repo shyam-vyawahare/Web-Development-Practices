@@ -6,7 +6,7 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
-Last Updated: October 11, 2026
+Last Updated: 12th of October 2026
 
 ---
 
@@ -260,7 +260,8 @@ Web Practices/
 │   ├── 12-dom-create-remove.html
 │   ├── 13-forms-validation.html
 │   ├── 14-local-storage.html
-│   └── 15-promises-async-await.js
+│   ├── 15-promises-async-await.js
+│   └── 16-fetch-api.html
 │
 ├── React/
 │   ├── fundamentals/
