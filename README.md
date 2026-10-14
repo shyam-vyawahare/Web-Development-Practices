@@ -262,7 +262,12 @@ Web Practices/
 │   ├── 14-local-storage.html
 │   ├── 15-promises-async-await.js
 │   ├── 16-fetch-api.html
-│   └── 17-search-filter.html
+│   ├── 17-search-filter.html
+│   └── 18-javascript-modules/
+│        ├── math.js
+│        ├── greetings.js
+│        ├── main.js
+│        └── index.html
 │
 ├── React/
 │   ├── fundamentals/
