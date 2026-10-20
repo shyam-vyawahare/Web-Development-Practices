@@ -6,7 +6,7 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
-Last Updated: 18th of October 2026
+Last Updated: 20th of October 2026
 
 ---
 
@@ -271,7 +271,9 @@ Web Practices/
 │   ├── 19-oop-classes.js
 │   ├── 20-error-handling.js
 │   ├── 21-map-set.js
-│   └── 22-regular-expressions.js
+│   ├── 22-regular-expressions.js
+│   ├── 23-dates-and-timers.js
+│   └── 24-array-sorting-searching.js
 │
 ├── React/
 │   ├── fundamentals/
