@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debouncing and Throttling</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            box-sizing: border-box;
+            margin: 10px 0;
+        }
+
+        .box {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 8px;
+        }
+
+        #scrollArea {
+            height: 180px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+
+        #scrollContent {
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Debouncing and Throttling</h1>
+
+    <!-- 1. Debouncing -->
+    <section class="box">
+        <h2>1. Debounced Search</h2>
+        <input id="searchInput" placeholder="Type something to search...">
+        <p id="searchResult">Search results will appear here.</p>
+    </section>
+
+    <!-- 2. Throttling -->
+    <section class="box">
+        <h2>2. Throttled Counter</h2>
+        <p>Move your mouse over this box quickly.</p>
+        <div id="mouseArea" style="padding: 30px; background: #ddd;">
+            Move mouse here
+        </div>
+        <p>Event executions: <strong id="eventCount">0</strong></p>
+    </section>
+
+    <!-- 3. Throttled Scroll -->
+    <section class="box">
+        <h2>3. Throttled Scroll</h2>
+        <p>Scroll inside this area.</p>
+        <div id="scrollArea">
+            <div id="scrollContent">
+                Scroll down and up to test throttling.
+            </div>
+        </div>
+        <p id="scrollStatus">Scroll position: 0</p>
+    </section>
+
+    <script>
+        // 1. Debounce
+        // Runs only after events stop for the specified delay.
+        function debounce(callback, delay) {
+            let timerId;
+
+            return function (...args) {
+                clearTimeout(timerId);
+
+                timerId = setTimeout(() => {
+                    callback.apply(this, args);
+                }, delay);
+            };
+        }
+
+        const searchInput = document.getElementById("searchInput");
+        const searchResult = document.getElementById("searchResult");
+
+        function search(query) {
+            if (!query.trim()) {
+                searchResult.textContent = "Enter something to search.";
+                return;
+            }
+
+            searchResult.textContent = `Searching for: ${query}`;
+        }
+
+        const debouncedSearch = debounce(search, 500);
+
+        searchInput.addEventListener("input", (event) => {
+            debouncedSearch(event.target.value);
+        });
+
+
+        // 2. Throttle
+        // Runs at most once per delay interval during continuous events.
+        function throttle(callback, delay) {
+            let lastExecution = 0;
+
+            return function (...args) {
+                const now = Date.now();
+
+                if (now - lastExecution >= delay) {
+                    lastExecution = now;
+                    callback.apply(this, args);
+                }
+            };
+        }
+
+        const mouseArea = document.getElementById("mouseArea");
+        const eventCount = document.getElementById("eventCount");
+
+        let count = 0;
+
+        const throttledMouseMove = throttle(() => {
+            count++;
+            eventCount.textContent = count;
+        }, 500);
+
+        mouseArea.addEventListener("mousemove", throttledMouseMove);
+
+
+        // 3. Throttled scrolling
+        const scrollArea = document.getElementById("scrollArea");
+        const scrollStatus = document.getElementById("scrollStatus");
+
+        const throttledScroll = throttle(() => {
+            scrollStatus.textContent =
+                `Scroll position: ${scrollArea.scrollTop}`;
+        }, 200);
+
+        scrollArea.addEventListener("scroll", throttledScroll);
+    </script>
+</body>
+</html>
