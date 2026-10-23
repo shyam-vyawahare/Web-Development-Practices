@@ -276,6 +276,7 @@ Web Practices/
 │   ├── 24-array-sorting-searching.js
 │   ├── 25-closures-higher-order-functions.js
 │   ├── 26-event-loop.js
+│   ├── 27-debounce-throttle.html
 │   └── 28-data-transformation.js
 │
 ├── React/
