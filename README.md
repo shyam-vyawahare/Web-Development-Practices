@@ -6,7 +6,7 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
-Last Updated: 23rd of October 2026
+Last Updated: 24th of October 2026
 
 ---
 
@@ -277,7 +277,8 @@ Web Practices/
 │   ├── 25-closures-higher-order-functions.js
 │   ├── 26-event-loop.js
 │   ├── 27-debounce-throttle.html
-│   └── 28-data-transformation.js
+│   ├── 28-data-transformation.js
+│   └── 29-browser-storage.html
 │
 ├── React/
 │   ├── fundamentals/
