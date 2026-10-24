@@ -1,0 +1,272 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Browser Storage Practice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        section {
+            margin: 20px 0;
+            padding: 18px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        input {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Browser Storage Practice</h1>
+
+    <section>
+        <h2>1. Save User Preferences</h2>
+
+        <input id="username" placeholder="Enter your name">
+        <button id="saveName">Save Name</button>
+        <button id="clearName">Clear Name</button>
+
+        <p id="nameStatus">No name saved yet.</p>
+    </section>
+
+    <section>
+        <h2>2. Session Storage</h2>
+
+        <button id="saveSession">Save Session Message</button>
+        <button id="readSession">Read Session Message</button>
+
+        <p id="sessionStatus"></p>
+    </section>
+
+    <section>
+        <h2>3. Shopping Cart</h2>
+
+        <input id="productName" placeholder="Product name">
+        <input id="productPrice" type="number" min="0.01" step="0.01"
+            placeholder="Price">
+
+        <button id="addProduct">Add Product</button>
+        <button id="clearCart">Clear Cart</button>
+
+        <ul id="cartList"></ul>
+        <p id="cartTotal">Total: ₹0.00</p>
+        <p id="cartStatus" role="status"></p>
+    </section>
+
+    <script>
+        // 1. Reusable localStorage Utilities
+
+        function saveData(key, value) {
+            try {
+                localStorage.setItem(key, JSON.stringify(value));
+                return true;
+            } catch (error) {
+                console.error("Unable to save data:", error);
+                return false;
+            }
+        }
+
+        function getData(key, fallback = null) {
+            try {
+                const value = localStorage.getItem(key);
+
+                return value === null
+                    ? fallback
+                    : JSON.parse(value);
+            } catch (error) {
+                console.error("Unable to read data:", error);
+                return fallback;
+            }
+        }
+
+        function removeData(key) {
+            try {
+                localStorage.removeItem(key);
+                return true;
+            } catch (error) {
+                console.error("Unable to remove data:", error);
+                return false;
+            }
+        }
+
+
+        // 2. Save User Preferences
+
+        const usernameInput = document.getElementById("username");
+        const nameStatus = document.getElementById("nameStatus");
+
+        function loadUsername() {
+            const username = getData("practice_username", "");
+
+            usernameInput.value = username;
+            nameStatus.textContent = username
+                ? `Welcome back, ${username}!`
+                : "No name saved yet.";
+        }
+
+        document.getElementById("saveName").addEventListener("click", () => {
+            const username = usernameInput.value.trim();
+
+            if (!username) {
+                nameStatus.textContent = "Please enter a name.";
+                return;
+            }
+
+            if (saveData("practice_username", username)) {
+                nameStatus.textContent = `Saved name: ${username}`;
+            } else {
+                nameStatus.textContent = "Could not save your name.";
+            }
+        });
+
+        document.getElementById("clearName").addEventListener("click", () => {
+            removeData("practice_username");
+            usernameInput.value = "";
+            nameStatus.textContent = "Name cleared.";
+        });
+
+        loadUsername();
+
+
+        // 3. Session Storage
+
+        const sessionStatus = document.getElementById("sessionStatus");
+
+        document.getElementById("saveSession").addEventListener("click", () => {
+            try {
+                sessionStorage.setItem(
+                    "practice_message",
+                    "This message belongs to this browser tab's session."
+                );
+
+                sessionStatus.textContent = "Session message saved.";
+            } catch (error) {
+                sessionStatus.textContent = "Could not save session data.";
+            }
+        });
+
+        document.getElementById("readSession").addEventListener("click", () => {
+            try {
+                sessionStatus.textContent =
+                    sessionStorage.getItem("practice_message") ||
+                    "No session message found.";
+            } catch (error) {
+                sessionStatus.textContent = "Could not read session data.";
+            }
+        });
+
+
+        // 4. Shopping Cart with Persistent Storage
+
+        const productName = document.getElementById("productName");
+        const productPrice = document.getElementById("productPrice");
+        const cartList = document.getElementById("cartList");
+        const cartTotal = document.getElementById("cartTotal");
+        const cartStatus = document.getElementById("cartStatus");
+
+        let cart = getData("practice_cart", []);
+
+        if (!Array.isArray(cart)) {
+            cart = [];
+        }
+
+        function renderCart() {
+            cartList.replaceChildren();
+
+            let total = 0;
+
+            cart.forEach((product, index) => {
+                const item = document.createElement("li");
+
+                const details = document.createElement("span");
+                details.textContent =
+                    `${product.name} — ₹${product.price.toFixed(2)} `;
+
+                const removeButton = document.createElement("button");
+                removeButton.textContent = "Remove";
+                removeButton.addEventListener("click", () => {
+                    cart.splice(index, 1);
+
+                    if (saveData("practice_cart", cart)) {
+                        renderCart();
+                        cartStatus.textContent = "Product removed.";
+                    } else {
+                        cartStatus.textContent =
+                            "Could not save the updated cart.";
+                    }
+                });
+
+                item.append(details, removeButton);
+                cartList.appendChild(item);
+
+                total += product.price;
+            });
+
+            cartTotal.textContent = `Total: ₹${total.toFixed(2)}`;
+        }
+
+        document.getElementById("addProduct").addEventListener("click", () => {
+            const name = productName.value.trim();
+            const price = Number(productPrice.value);
+
+            if (!name || productPrice.value.trim() === "" ||
+                !Number.isFinite(price) || price <= 0) {
+                cartStatus.textContent =
+                    "Enter a product name and a price greater than zero.";
+                return;
+            }
+
+            cart.push({ name, price });
+
+            if (!saveData("practice_cart", cart)) {
+                cart.pop();
+                cartStatus.textContent =
+                    "Could not save the product. Storage may be unavailable.";
+                return;
+            }
+
+            renderCart();
+
+            productName.value = "";
+            productPrice.value = "";
+            cartStatus.textContent = "Product added successfully.";
+        });
+
+        document.getElementById("clearCart").addEventListener("click", () => {
+            const previousCart = cart;
+            cart = [];
+
+            if (!saveData("practice_cart", cart)) {
+                cart = previousCart;
+                cartStatus.textContent = "Could not clear the cart.";
+                return;
+            }
+
+            renderCart();
+            cartStatus.textContent = "Cart cleared.";
+        });
+
+        renderCart();
+    </script>
+</body>
+</html>
