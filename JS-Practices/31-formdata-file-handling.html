@@ -1,0 +1,246 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FormData and File Handling</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+        }
+
+        input, button, textarea {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            cursor: pointer;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        img {
+            max-width: 180px;
+            margin-top: 10px;
+            border-radius: 8px;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>FormData and File Handling</h1>
+
+    <!-- 1. FormData -->
+    <section>
+        <h2>1. Form Submission</h2>
+
+        <form id="userForm">
+            <input
+                type="text"
+                name="username"
+                placeholder="Enter username"
+                required
+            >
+
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter email"
+                required
+            >
+
+            <textarea
+                name="message"
+                placeholder="Write a message"
+                required
+            ></textarea>
+
+            <button type="submit">Submit Form</button>
+        </form>
+
+        <h3>Submitted Data:</h3>
+        <pre id="formOutput"></pre>
+    </section>
+
+    <!-- 2. File Handling -->
+    <section>
+        <h2>2. File Upload</h2>
+
+        <input type="file" id="fileInput">
+
+        <p id="fileInfo"></p>
+    </section>
+
+    <!-- 3. Image Preview -->
+    <section>
+        <h2>3. Image Preview</h2>
+
+        <input type="file" id="imageInput" accept="image/*">
+
+        <div id="imagePreview"></div>
+    </section>
+
+    <!-- 4. Multiple Files -->
+    <section>
+        <h2>4. Multiple File Selection</h2>
+
+        <input type="file" id="multipleFiles" multiple>
+
+        <ul id="fileList"></ul>
+    </section>
+
+    <!-- 5. File Size Validation -->
+    <section>
+        <h2>5. File Size Validation</h2>
+
+        <input type="file" id="validatedFile">
+
+        <p id="validationStatus"></p>
+    </section>
+
+    <script>
+        // 1. FormData API
+
+        const userForm = document.getElementById("userForm");
+        const formOutput = document.getElementById("formOutput");
+
+        userForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(userForm);
+
+            const userData = Object.fromEntries(formData.entries());
+
+            formOutput.textContent = JSON.stringify(userData, null, 2);
+        });
+
+
+        // 2. Basic File Information
+
+        const fileInput = document.getElementById("fileInput");
+        const fileInfo = document.getElementById("fileInfo");
+
+        fileInput.addEventListener("change", () => {
+            const file = fileInput.files[0];
+
+            if (!file) {
+                fileInfo.textContent = "No file selected.";
+                return;
+            }
+
+            fileInfo.textContent = `
+                Name: ${file.name}
+                Type: ${file.type}
+                Size: ${(file.size / 1024).toFixed(2)} KB
+                Last Modified: ${new Date(file.lastModified).toLocaleString()}
+            `;
+        });
+
+
+        // 3. Image Preview using FileReader
+
+        const imageInput = document.getElementById("imageInput");
+        const imagePreview = document.getElementById("imagePreview");
+
+        imageInput.addEventListener("change", () => {
+            const file = imageInput.files[0];
+
+            imagePreview.replaceChildren();
+
+            if (!file) return;
+
+            if (!file.type.startsWith("image/")) {
+                imagePreview.textContent = "Please select an image.";
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                const image = document.createElement("img");
+
+                image.src = reader.result;
+                image.alt = "Selected image preview";
+
+                imagePreview.appendChild(image);
+            };
+
+            reader.onerror = () => {
+                imagePreview.textContent = "Unable to read image.";
+            };
+
+            reader.readAsDataURL(file);
+        });
+
+
+        // 4. Multiple File Selection
+
+        const multipleFiles = document.getElementById("multipleFiles");
+        const fileList = document.getElementById("fileList");
+
+        multipleFiles.addEventListener("change", () => {
+            fileList.replaceChildren();
+
+            Array.from(multipleFiles.files).forEach((file) => {
+                const item = document.createElement("li");
+
+                item.textContent =
+                    `${file.name} (${(file.size / 1024).toFixed(2)} KB)`;
+
+                fileList.appendChild(item);
+            });
+        });
+
+
+        // 5. File Size Validation
+
+        const validatedFile = document.getElementById("validatedFile");
+        const validationStatus = document.getElementById("validationStatus");
+
+        const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2 MB
+
+        validatedFile.addEventListener("change", () => {
+            const file = validatedFile.files[0];
+
+            if (!file) {
+                validationStatus.textContent = "No file selected.";
+                return;
+            }
+
+            if (file.size > MAX_FILE_SIZE) {
+                validationStatus.textContent =
+                    "File is too large. Maximum size is 2 MB.";
+
+                validatedFile.value = "";
+                return;
+            }
+
+            validationStatus.textContent = "File size is valid.";
+        });
+    </script>
+</body>
+</html>
