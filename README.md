@@ -6,7 +6,7 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
-Last Updated: 9th of November 2026
+Last Updated: 10th of November 2026
 
 ---
 
@@ -280,7 +280,11 @@ Web Practices/
 │   ├── 28-data-transformation.js
 │   ├── 29-browser-storage.html
 │   ├── 30-browser-apis.html
-│   └── JS-Practices/31-formdata-file-handling.html
+│   ├── 31-formdata-file-handling.html
+│   └── 32-web-workers/
+│        ├── index.html
+│        ├── main.js
+│        └── worker.js
 │
 ├── React/
 │   ├── fundamentals/
