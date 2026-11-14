@@ -1,0 +1,306 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IndexedDB Practice</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 750px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        section {
+            background: white;
+            padding: 20px;
+            margin-bottom: 18px;
+            border-radius: 8px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px 0;
+        }
+
+        input {
+            width: 95%;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        li {
+            margin: 12px 0;
+        }
+
+        #status {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>JavaScript IndexedDB</h1>
+
+    <section>
+        <h2>Add Student</h2>
+
+        <input type="text" id="studentName" placeholder="Student name">
+
+        <input
+            type="number"
+            id="studentAge"
+            placeholder="Student age"
+            min="1"
+        >
+
+        <input type="text" id="studentCourse" placeholder="Course">
+
+        <button id="addStudent">Add Student</button>
+    </section>
+
+    <section>
+        <h2>Student Records</h2>
+
+        <button id="loadStudents">Refresh Records</button>
+
+        <ul id="studentList"></ul>
+    </section>
+
+    <section>
+        <h2>Search Student</h2>
+
+        <input
+            type="number"
+            id="searchId"
+            placeholder="Enter student ID"
+            min="1"
+        >
+
+        <button id="searchStudent">Search</button>
+
+        <p id="searchResult"></p>
+    </section>
+
+    <p id="status" role="status">Initializing database...</p>
+
+    <script>
+        // 1. Open or Create Database
+
+        const request = indexedDB.open("StudentDatabase", 1);
+
+        let database;
+
+        request.onupgradeneeded = (event) => {
+            const db = event.target.result;
+
+            const store = db.createObjectStore("students", {
+                keyPath: "id",
+                autoIncrement: true
+            });
+
+            store.createIndex("name", "name", { unique: false });
+            store.createIndex("course", "course", { unique: false });
+        };
+
+        request.onsuccess = (event) => {
+            database = event.target.result;
+
+            database.onversionchange = () => {
+                database.close();
+                status.textContent =
+                    "Database version changed. Please reload the page.";
+            };
+
+            status.textContent = "Database connected successfully.";
+
+            loadStudents();
+        };
+
+        request.onerror = () => {
+            status.textContent = "Database error: " + request.error.message;
+        };
+
+
+        // 2. Add Student
+
+        function addStudent(name, age, course) {
+            return new Promise((resolve, reject) => {
+                const transaction = database.transaction(
+                    "students",
+                    "readwrite"
+                );
+
+                const store = transaction.objectStore("students");
+
+                const addRequest = store.add({
+                    name,
+                    age,
+                    course,
+                    createdAt: new Date().toISOString()
+                });
+
+                addRequest.onsuccess = () => resolve(addRequest.result);
+                addRequest.onerror = () => reject(addRequest.error);
+            });
+        }
+
+        document.getElementById("addStudent").addEventListener(
+            "click",
+            async () => {
+                const name = document.getElementById("studentName").value.trim();
+                const age = Number(document.getElementById("studentAge").value);
+                const course = document.getElementById("studentCourse").value.trim();
+
+                if (!name || !course || !Number.isInteger(age) || age < 1) {
+                    status.textContent = "Please enter valid student details.";
+                    return;
+                }
+
+                try {
+                    const id = await addStudent(name, age, course);
+
+                    status.textContent = `Student added with ID: ${id}`;
+
+                    document.getElementById("studentName").value = "";
+                    document.getElementById("studentAge").value = "";
+                    document.getElementById("studentCourse").value = "";
+
+                    loadStudents();
+                } catch (error) {
+                    status.textContent = "Unable to add student: " + error.message;
+                }
+            }
+        );
+
+
+        // 3. Read All Students
+
+        function loadStudents() {
+            if (!database) return;
+
+            const transaction = database.transaction(
+                "students",
+                "readonly"
+            );
+
+            const store = transaction.objectStore("students");
+            const getRequest = store.getAll();
+
+            getRequest.onsuccess = () => {
+                const students = getRequest.result;
+                const studentList = document.getElementById("studentList");
+
+                studentList.replaceChildren();
+
+                if (students.length === 0) {
+                    const item = document.createElement("li");
+                    item.textContent = "No student records found.";
+                    studentList.appendChild(item);
+                    return;
+                }
+
+                students.forEach((student) => {
+                    const item = document.createElement("li");
+
+                    const details = document.createElement("span");
+                    details.textContent =
+                        `ID: ${student.id} | ${student.name} | ` +
+                        `${student.age} years | ${student.course} `;
+
+                    const deleteButton = document.createElement("button");
+                    deleteButton.textContent = "Delete";
+
+                    deleteButton.addEventListener("click", async () => {
+                        try {
+                            await deleteStudent(student.id);
+                            status.textContent = "Student deleted.";
+                            loadStudents();
+                        } catch (error) {
+                            status.textContent =
+                                "Delete failed: " + error.message;
+                        }
+                    });
+
+                    item.append(details, deleteButton);
+                    studentList.appendChild(item);
+                });
+            };
+
+            getRequest.onerror = () => {
+                status.textContent = "Unable to retrieve student records.";
+            };
+        }
+
+        document.getElementById("loadStudents").addEventListener(
+            "click",
+            loadStudents
+        );
+
+
+        // 4. Search Student by ID
+
+        function getStudent(id) {
+            return new Promise((resolve, reject) => {
+                const transaction = database.transaction(
+                    "students",
+                    "readonly"
+                );
+
+                const store = transaction.objectStore("students");
+                const getRequest = store.get(id);
+
+                getRequest.onsuccess = () => resolve(getRequest.result);
+                getRequest.onerror = () => reject(getRequest.error);
+            });
+        }
+
+        document.getElementById("searchStudent").addEventListener(
+            "click",
+            async () => {
+                const id = Number(document.getElementById("searchId").value);
+                const output = document.getElementById("searchResult");
+
+                if (!Number.isInteger(id) || id < 1) {
+                    output.textContent = "Enter a valid student ID.";
+                    return;
+                }
+
+                try {
+                    const student = await getStudent(id);
+
+                    output.textContent = student
+                        ? `${student.name} | ${student.age} years | ${student.course}`
+                        : "Student not found.";
+                } catch (error) {
+                    output.textContent = "Search failed: " + error.message;
+                }
+            }
+        );
+
+
+        // 5. Delete Student
+
+        function deleteStudent(id) {
+            return new Promise((resolve, reject) => {
+                const transaction = database.transaction(
+                    "students",
+                    "readwrite"
+                );
+
+                const store = transaction.objectStore("students");
+                const deleteRequest = store.delete(id);
+
+                deleteRequest.onsuccess = () => resolve();
+                deleteRequest.onerror = () => reject(deleteRequest.error);
+            });
+        }
+    </script>
+</body>
+</html>
