@@ -6,7 +6,7 @@ This repository focuses on HTML, CSS, JavaScript, and gradually full-stack web d
 
 «📝 Folder names and categories may evolve as I continue organizing and expanding my learning path.»
 
-Last Updated: 15th of November 2026
+Last Updated: 16th of November 2026
 
 ---
 
@@ -286,7 +286,12 @@ Web Practices/
 │   │   ├── main.js
 │   │   └── worker.js
 │   ├── 33-indexeddb.html
-│   └── 34-design-patterns.js
+│   ├── 34-design-patterns.js
+│   └── 35-es-modules/
+│        ├── index.html
+│        ├── app.js
+│        ├── math.js
+│        └── user.js
 │
 ├── React/
 │   ├── fundamentals/
